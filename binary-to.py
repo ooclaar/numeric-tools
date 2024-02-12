@@ -39,17 +39,20 @@ def main():
             print("The number is not binary.")
     
     if args.octal:
+        
         resultin = 0
         resultout = ""
         vposicao = 1
         bitstring = ""
-        rest=0
+        rest = 0
+        diff = 0
 
-        if (int(number) % 3) != 0:
-            rest=int(number) // 3
-            for zero in range(rest):
-                number = "0" + str(number)
-            print("O número modificado é: " + str(number))
+        rest = len(number) % 3
+        while (True):
+            number = "0" + str(number)
+            if ((len(number) % 3)==0):
+                print("A string foi modificada para: " + str(number))
+                break
 
         for i in range(0, len(number), 3):
             
