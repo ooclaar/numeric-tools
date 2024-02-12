@@ -18,22 +18,70 @@ def main():
 
     args = parser.parse_args()
     number = str(args.number)
-    result = 0
-    vposicao = 1
-
+    
     if args.decimal:
+        
+        result = 0
+        vposicao = 1
+
         for bit in number[::-1]:
             if bit=='1':
                 result=result+vposicao
             elif bit=='0':
-                vposicao=vposicao*2
+                continue
             else:
-                result=0
+                result=1
                 break
+            vposicao=vposicao*2
         if result!=0:
             print("The value decimal is: " + str(result))
         else:
             print("The number is not binary.")
+    
+    if args.octal:
+        resultin = 0
+        resultout = ""
+        vposicao = 1
+        bitstring = ""
+        rest=0
 
+        if (int(number) % 3) != 0:
+            rest=int(number) // 3
+            for zero in range(rest):
+                number = "0" + str(number)
+            print("O número modificado é: " + str(number))
+
+        for i in range(0, len(number), 3):
+            
+            part = str(number[::-1][i:i+3])
+            print("Parte: " + part)
+
+            for bit in part:
+                
+                bitstring = str(bit)
+                
+                print("BIT: " + str(bitstring))
+                print("VPO:" + str(vposicao))
+                
+                if bit=='1':
+                    resultin=int(resultin) + (int(vposicao) * int(bit))
+                elif bit!='0':
+                    result=1
+                    break
+                    
+                vposicao=vposicao*2
+
+            print("Soma do Bloco: " + str(resultin))
+            print("------------------------------------")
+            
+            vposicao = 1
+            resultout = str(resultout) + str(resultin)
+            resultin = 0
+
+        if resultout!=0:
+            print("The value octal is: " + str(resultout)[::-1])
+        else:
+            print("The number is not binary.")    
+    
 if __name__ == "__main__":
     main()
