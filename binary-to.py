@@ -63,12 +63,14 @@ def main():
     vposicao = 1
     bitstring = ""
     
-    while (True):
-        number = "0" + str(number)
-        if ((len(number) % factor)==0):
-            if debug:
-                print("O número passado foi modificado para: {number}.")
-            break
+    if ((len(number) % factor)!=0):
+        while (True):
+            if ((len(number) % factor)==0):
+                if debug:
+                    print(f"O número passado foi modificado para: {number}.")
+                break
+            else:
+                number = "0" + str(number)
 
     for i in range(0, len(number), factor):
         
